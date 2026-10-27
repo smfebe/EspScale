@@ -1,0 +1,15 @@
+description: Custom HX711 binding for PoC
+compatible: "hx711"
+
+include: base.yaml
+
+properties:
+  sck-gpios:
+    type: phandle-array
+    required: true
+    description: SCK clock output pin
+
+  dout-gpios:
+    type: phandle-array
+    required: true
+    description: DOUT data input pin

@@ -1,0 +1,42 @@
+&uart0 {
+    status = "disabled";
+};
+
+&i2c0 {
+    display1: led@70 {
+        compatible = "vk16k33";
+        reg = <0x70>;
+        label = "DISPLAY1";
+    };
+    display2: led@71 {
+        compatible = "vk16k33";
+        reg = <0x71>;
+        label = "DISPLAY2";
+    };
+};
+
+/ {
+    aliases {
+        touch0 = &touch_btn0;
+        touch1 = &touch_btn1;
+    };
+
+    hx711: hx711 {
+        compatible = "hx711";
+        sck-gpios  = <&gpio0 5 GPIO_ACTIVE_HIGH>;   /* PD_SCK, Ausgang */
+        dout-gpios = <&gpio0 21 GPIO_ACTIVE_HIGH>;  /* DOUT, Eingang */
+    };
+
+    touch_buttons {
+        compatible = "gpio-keys";
+
+        touch_btn0: touch_btn_0 {
+            gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+            label = "Touch Button 1";
+        };
+        touch_btn1: touch_btn_1 {
+            gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+            label = "Touch Button 2";
+        };
+    };
+};
